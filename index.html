@@ -6,121 +6,140 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #f4f7f9; color: #333; font-family: "Microsoft YaHei", sans-serif; }
-        .hero { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 50px 0; text-align: center; }
-        .feature-box { border-radius: 12px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.06); padding: 20px; background: white; transition: 0.3s; cursor: pointer; height: 100%; }
+        .hero { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 60px 0; text-align: center; }
+        .feature-box { border-radius: 15px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 25px; background: white; height: 100%; transition: 0.3s; cursor: pointer; }
         .feature-box:hover { transform: translateY(-5px); background-color: #f0f7ff; border: 1px solid #2563eb; }
-        .section-title { font-weight: bold; color: #1e3a8a; margin-top: 40px; margin-bottom: 25px; text-align: center; }
-        .highlight-item { background: white; padding: 15px; border-radius: 10px; border-left: 4px solid #2563eb; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; }
+        .section-title { font-weight: bold; color: #1e3a8a; margin-top: 50px; margin-bottom: 30px; text-align: center; }
+        .highlight-card { background: white; padding: 30px; border-radius: 15px; border-top: 5px solid #2563eb; box-shadow: 0 6px 15px rgba(0,0,0,0.05); height: 100%; transition: 0.3s; }
+        .highlight-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .step-tag { background: #e0e7ff; color: #4338ca; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 10px; }
         
-        /* AI 聊天区域样式 */
-        #chatWindow { height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 15px; background: #f8f9fa; border-bottom: 1px solid #eee; }
-        .chat-bubble { padding: 12px 16px; border-radius: 15px; max-width: 85%; font-size: 0.95rem; line-height: 1.6; }
-        .ai-msg { background: #ffffff; color: #333; align-self: flex-start; border: 1px solid #e9ecef; }
-        .user-msg { background: #007bff; color: white; align-self: flex-end; margin-left: auto; }
-        
-        .modal-body ul { padding-left: 0; }
-        .modal-body li { margin-bottom: 10px; padding: 8px; background: #f8faff; border-radius: 5px; list-style: none; border-left: 3px solid #2563eb; }
+        /* 详情列表样式 */
+        .detail-list { padding-left: 0; }
+        .detail-list li { margin-bottom: 12px; padding: 10px; background: #f8faff; border-left: 4px solid #2563eb; list-style: none; border-radius: 0 8px 8px 0; }
     </style>
 </head>
 <body>
 
     <header class="hero">
         <div class="container">
-            <h1 class="display-5 fw-bold mb-2">💼 职感实境</h1>
-            <p class="lead">AI 沉浸式职场模拟与面试压力测试系统</p>
+            <h1 class="display-4 fw-bold mb-3">💼 职感实境</h1>
+            <p class="lead">一款基于大模型研发的 AI 沉浸式职场模拟与面试压力测试系统</p>
+            <div class="mt-4">
+                <span class="badge bg-light text-primary px-3 py-2">低成本实训</span>
+                <span class="badge bg-light text-primary px-3 py-2 mx-2">高仿真交互</span>
+                <span class="badge bg-light text-primary px-3 py-2">大模型驱动</span>
+            </div>
         </div>
     </header>
 
     <div class="container mb-5">
-        <h2 class="section-title">解决求职三大难题</h2>
+        <h2 class="section-title">解决求职三大难题 (点击方块查看技术详情)</h2>
         <div class="row g-4 text-center">
             <div class="col-md-4">
-                <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modal1">
+                <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modalResume">
                     <h5 class="fw-bold text-primary">🚫 拒绝“纸上谈兵”</h5>
-                    <p class="text-muted small mb-0">针对简历细节进行连环追问，填补实战空白。</p>
+                    <p class="text-muted small">简历优化后，AI将针对细节进行连环追问，预判面试官逻辑，填补实战空白。</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modal2">
+                <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modalIndustry">
                     <h5 class="fw-bold text-primary">🌍 抹平行业差</h5>
-                    <p class="text-muted small mb-0">覆盖多种面试风格，还原真实的行业语境。</p>
+                    <p class="text-muted small">覆盖互联网、体制内、外企面试风格，还原真实的行业术语与沟通环境。</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modal3">
+                <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modalMindset">
                     <h5 class="fw-bold text-primary">🧠 稳定面试心态</h5>
-                    <p class="text-muted small mb-0">沉浸式高压模拟，提升应变与心理素质。</p>
+                    <p class="text-muted small">沉浸式模拟各种高压职场场景，帮助学生克服紧张情绪，提升临场表现力。</p>
                 </div>
             </div>
         </div>
 
-        <h2 class="section-title">核心亮点与实训演示</h2>
+        <h2 class="section-title">项目核心亮点</h2>
         <div class="row g-4">
-            <div class="col-md-5 d-flex flex-column justify-content-between">
-                <div class="highlight-item">
-                    <h6 class="fw-bold text-primary">🎭 多重人格 AI 面试官</h6>
-                    <p class="text-muted small mb-0">预设压力面、亲和面、专业面，提升学生在不同场景下的沟通能力。</p>
-                </div>
-                <div class="highlight-item">
-                    <h6 class="fw-bold text-primary">🔍 简历深度挖潜引擎</h6>
-                    <p class="text-muted small mb-0">基于简历内容自动生成高难度陷阱问题，精准模拟面试官追问逻辑。</p>
-                </div>
-                <div class="highlight-item">
-                    <h6 class="fw-bold text-primary">📊 精细化复盘报告</h6>
-                    <p class="text-muted small mb-0">面试后即时指出逻辑漏洞，并提供改进建议与满分参考答案。</p>
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <span class="step-tag">亮点一</span>
+                    <h5 class="fw-bold">多重人格 AI 面试官</h5>
+                    <p class="text-muted small">系统提供压力面、亲和面、专业面三种性格模型，帮助学生适应多样化的沟通风格。</p>
                 </div>
             </div>
-
-            <div class="col-md-7">
-                <div class="card shadow-lg border-0 rounded-4 overflow-hidden h-100">
-                    <div class="card-header bg-dark text-white p-3 d-flex justify-content-between">
-                        <span class="fw-bold">AI 面试模拟间 (实训中)</span>
-                        <span class="badge bg-success">● 豆包引擎在线</span>
-                    </div>
-                    <div id="chatWindow">
-                        <div class="chat-bubble ai-msg">
-                            <strong>AI面试官:</strong> “你好！我是你的 AI 面试助手。请结合你申请的岗位，做一个简短的自我介绍，并谈谈你最大的职业竞争优势是什么？”
-                        </div>
-                    </div>
-                    <div class="card-footer bg-white p-3">
-                        <div class="input-group">
-                            <input type="text" id="userInput" class="form-control" placeholder="输入你的回答..." autocomplete="off">
-                            <button class="btn btn-primary px-4" onclick="handleSend()">发送</button>
-                        </div>
-                    </div>
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <span class="step-tag">亮点二</span>
+                    <h5 class="mt-2 fw-bold">简历深度挖掘引擎</h5>
+                    <p class="text-muted small">AI 根据用户上传的简历，自动识别潜在盲点，生成针对性的高难度陷阱问题。</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <span class="step-tag">亮点三</span>
+                    <h5 class="mt-2 fw-bold">精细化复盘“错题本”</h5>
+                    <p class="text-muted small">面试结束后即时生成多维度评估报告，指出逻辑漏洞并提供标准参考范例。</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modal1" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">简历深度对垒</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><ul><li>自动解析考点</li><li>连续逻辑追问</li><li>内容一致性检查</li></ul></div></div></div></div>
-    <div class="modal fade" id="modal2" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">多维语境模拟</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><ul><li>行业术语对齐</li><li>多元文化环境</li><li>真实背景音融入</li></ul></div></div></div></div>
-    <div class="modal fade" id="modal3" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">抗压实训营</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><ul><li>极端提问挑战</li><li>情绪状态反馈</li><li>应变能力评分</li></ul></div></div></div></div>
+    <div class="modal fade" id="modalResume" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title fw-bold">简历深度对垒模块</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <ul class="detail-list">
+                        <li><strong>自动考点解析：</strong>AI 自动提取简历关键词，构建能力考核矩阵。</li>
+                        <li><strong>追问链条模拟：</strong>模拟面试官逻辑，对核心项目进行连续拆解。</li>
+                        <li><strong>一致性核查：</strong>检测回答与简历描述的匹配度。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalIndustry" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title fw-bold">多维行业语境模拟</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <ul class="detail-list">
+                        <li><strong>行业术语对齐：</strong>涵盖科技、金融等专业语境训练。</li>
+                        <li><strong>多元文化环境：</strong>模拟外企讨论、国企结构化等不同风格。</li>
+                        <li><strong>场景感融入：</strong>提升在不同办公环境下的心理适应力。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalMindset" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title fw-bold">沉浸式心态实训营</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <ul class="detail-list">
+                        <li><strong>抗压场景构建：</strong>针对尖锐提问和沉默场景专项训练。</li>
+                        <li><strong>实时反馈提示：</strong>引导用户调整自信心与语调。</li>
+                        <li><strong>应变逻辑评估：</strong>根据回答完整性给出心态评估。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5 text-center">
+        <p class="small mb-0 text-white-50">© 2026 职感实境 - 助力毕业生突破面试瓶颈，实现高质量就业</p>
+    </footer>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const chatWindow = document.getElementById('chatWindow');
-        const userInput = document.getElementById('userInput');
-
-        function handleSend() {
-            const text = userInput.value.trim();
-            if (!text) return;
-            const userDiv = document.createElement('div');
-            userDiv.className = 'chat-bubble user-msg';
-            userDiv.innerText = text;
-            chatWindow.appendChild(userDiv);
-            userInput.value = '';
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-
-            setTimeout(() => {
-                const aiDiv = document.createElement('div');
-                aiDiv.className = 'chat-bubble ai-msg';
-                aiDiv.innerHTML = "<strong>AI面试官 (豆包支持):</strong> 你的回答很有深度。在“职感实境”系统中，我们会针对你提到的核心能力进行多维度的压力测试。现在，请谈谈你对该行业未来发展的看法？";
-                chatWindow.appendChild(aiDiv);
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-            }, 1000);
-        }
-        userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
-    </script>
 </body>
 </html>
